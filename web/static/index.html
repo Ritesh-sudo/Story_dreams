@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedtime Stories — Reimagined</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+
+  <!-- Top progress bar (thin, Apple-style) -->
+  <div id="progress-bar" class="progress-bar"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Stories</a>
+      <div class="nav-links">
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <button class="nav-link nav-link-history" id="history-btn">History</button>
+        <a href="#create" class="nav-link nav-link-cta">Create</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       VIEW 1 — Landing (hero + how it works + form)
+       ══════════════════════════════════════════════ -->
+  <div id="view-landing">
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-glow"></div>
+      <div class="container hero-content">
+        <p class="eyebrow fade-in">For ages 5–10</p>
+        <h1 class="hero-headline fade-in">Bedtime stories,<br>reimagined.</h1>
+        <p class="hero-sub fade-in">
+          Tell us what your child loves.<br>
+          We'll craft a story they'll remember.
+        </p>
+        <div class="hero-actions fade-in">
+          <a href="#create" class="btn btn-primary">Create a story</a>
+          <a href="#how-it-works" class="btn btn-text">How it works &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works (dark section) -->
+    <section class="section-dark" id="how-it-works">
+      <div class="container">
+        <p class="eyebrow eyebrow-light reveal">The pipeline</p>
+        <h2 class="section-headline section-headline-light reveal">
+          Four steps from idea to story.
+        </h2>
+        <div class="feature-grid">
+          <div class="feature-card reveal">
+            <div class="feature-number">01</div>
+            <h3 class="feature-title">Classify</h3>
+            <p class="feature-desc">
+              We read your prompt and identify the story's genre — adventure,
+              friendship, fantasy, and more — to select the right tone and pacing.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-number">02</div>
+            <h3 class="feature-title">Plan</h3>
+            <p class="feature-desc">
+              Before a single word of prose is written, a structured story arc is
+              created: setup, conflict, rising action, climax, and a warm resolution.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-number">03</div>
+            <h3 class="feature-title">Write</h3>
+            <p class="feature-desc">
+              A specialized storyteller agent writes the full prose — rich in
+              sensory detail, natural dialogue, and age-appropriate vocabulary.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-number">04</div>
+            <h3 class="feature-title">Review</h3>
+            <p class="feature-desc">
+              An independent editor agent scores the story on six dimensions.
+              If it falls short, the story is revised and re-evaluated automatically.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story request form -->
+    <section class="request-section" id="create">
+      <div class="container container-narrow">
+        <p class="eyebrow reveal">Create</p>
+        <h2 class="section-headline reveal">Your story starts here.</h2>
+
+        <form id="story-form" class="story-form reveal" novalidate>
+
+          <div class="field-group">
+            <label class="field-label" for="story-prompt">What's the story about?</label>
+            <textarea
+              id="story-prompt"
+              class="story-textarea"
+              rows="4"
+              placeholder="A brave little fox who's afraid of the dark&#8230;"
+              maxlength="400"
+            ></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="child-name">
+              Child's name <span class="field-optional">(optional)</span>
+            </label>
+            <input
+              type="text"
+              id="child-name"
+              class="story-input"
+              placeholder="e.g. Emma or Lucas"
+              maxlength="50"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Child's age</label>
+            <div class="age-selector" role="group" aria-label="Select child's age">
+              <button type="button" class="age-pill" data-age="5">5</button>
+              <button type="button" class="age-pill" data-age="6">6</button>
+              <button type="button" class="age-pill age-pill-selected" data-age="7">7</button>
+              <button type="button" class="age-pill" data-age="8">8</button>
+              <button type="button" class="age-pill" data-age="9">9</button>
+              <button type="button" class="age-pill" data-age="10">10</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="story-category">Category</label>
+            <select id="story-category" class="story-select">
+              <option value="">Surprise me</option>
+              <option value="adventure">Adventure</option>
+              <option value="friendship">Friendship</option>
+              <option value="animal_tale">Animal Tale</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="bedtime_calm">Bedtime Calm</option>
+              <option value="educational">Educational</option>
+            </select>
+          </div>
+
+          <div id="form-error" class="form-error" hidden></div>
+
+          <button type="submit" class="btn btn-primary btn-large" id="generate-btn">
+            Generate
+          </button>
+
+        </form>
+      </div>
+    </section>
+
+  </div>
+  <!-- /view-landing -->
+
+
+  <!-- ══════════════════════════════════════════════
+       VIEW 2 — Live generation progress
+       ══════════════════════════════════════════════ -->
+  <div id="view-generating" class="view-hidden">
+    <section class="generation-section">
+      <div class="container container-narrow">
+        <h2 class="generation-headline">Crafting your story…</h2>
+
+        <!-- Guard blocked message (shown instead of steps if request is blocked) -->
+        <div id="guard-blocked-msg" class="guard-blocked" hidden>
+          <div class="guard-blocked-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#ff3b30" stroke-width="1.5"/>
+              <path d="M12 7v5M12 16v.5" stroke="#ff3b30" stroke-width="1.5"
+                    stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="guard-blocked-text" id="guard-blocked-text"></p>
+          <button class="btn btn-primary" id="guard-try-again-btn">Try a different story</button>
+        </div>
+
+        <div class="pipeline-steps" id="pipeline-steps">
+
+          <div class="pipeline-step" data-step="guard">
+            <div class="step-indicator">
+              <div class="step-spinner"></div>
+              <div class="step-check" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7l3.5 3.5L12 3" stroke="#34c759" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="step-body">
+              <div class="step-name">Checking request</div>
+              <div class="step-detail" id="step-detail-guard"></div>
+            </div>
+          </div>
+
+          <div class="pipeline-step step-pending" data-step="classify">
+            <div class="step-indicator">
+              <div class="step-spinner"></div>
+              <div class="step-check" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7l3.5 3.5L12 3" stroke="#34c759" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="step-body">
+              <div class="step-name">Understanding your request</div>
+              <div class="step-detail" id="step-detail-classify"></div>
+            </div>
+          </div>
+
+          <div class="pipeline-step step-pending" data-step="plan">
+            <div class="step-indicator">
+              <div class="step-spinner" hidden></div>
+              <div class="step-check" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7l3.5 3.5L12 3" stroke="#34c759" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-body">
+              <div class="step-name">Planning the story</div>
+              <div class="step-detail" id="step-detail-plan"></div>
+            </div>
+          </div>
+
+          <div class="pipeline-step step-pending" data-step="write">
+            <div class="step-indicator">
+              <div class="step-spinner" hidden></div>
+              <div class="step-check" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7l3.5 3.5L12 3" stroke="#34c759" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-body">
+              <div class="step-name">Writing</div>
+              <div class="step-detail" id="step-detail-write"></div>
+            </div>
+          </div>
+
+          <div class="pipeline-step step-pending" data-step="judge">
+            <div class="step-indicator">
+              <div class="step-spinner" hidden></div>
+              <div class="step-check" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7l3.5 3.5L12 3" stroke="#34c759" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-body">
+              <div class="step-name">Reviewing for quality</div>
+              <div class="step-detail" id="step-detail-judge"></div>
+            </div>
+          </div>
+
+          <div class="pipeline-step step-pending" data-step="revise" id="step-revise" hidden>
+            <div class="step-indicator">
+              <div class="step-spinner" hidden></div>
+              <div class="step-check" hidden>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7l3.5 3.5L12 3" stroke="#34c759" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="step-dot"></div>
+            </div>
+            <div class="step-body">
+              <div class="step-name">Polishing</div>
+              <div class="step-detail" id="step-detail-revise"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Live write preview — shows story tokens streaming in -->
+        <div id="stream-preview" class="stream-preview" hidden></div>
+
+        <!-- Score cards (revealed when judge completes) -->
+        <div class="scores-preview" id="scores-preview" hidden>
+          <div class="score-card-grid">
+            <div class="score-card" data-dim="safety">
+              <div class="score-card-value">—</div>
+              <div class="score-card-label">Safety</div>
+            </div>
+            <div class="score-card" data-dim="age_appropriateness">
+              <div class="score-card-value">—</div>
+              <div class="score-card-label">Age-Appropriate</div>
+            </div>
+            <div class="score-card" data-dim="narrative_arc_quality">
+              <div class="score-card-value">—</div>
+              <div class="score-card-label">Story Arc</div>
+            </div>
+            <div class="score-card" data-dim="engagement">
+              <div class="score-card-value">—</div>
+              <div class="score-card-label">Engagement</div>
+            </div>
+            <div class="score-card" data-dim="language_level">
+              <div class="score-card-value">—</div>
+              <div class="score-card-label">Language</div>
+            </div>
+            <div class="score-card" data-dim="originality">
+              <div class="score-card-value">—</div>
+              <div class="score-card-label">Originality</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+  <!-- /view-generating -->
+
+
+  <!-- ══════════════════════════════════════════════
+       VIEW 3 — Story display + feedback
+       ══════════════════════════════════════════════ -->
+  <div id="view-story" class="view-hidden">
+
+    <!-- Story display -->
+    <section class="story-section">
+      <div class="container container-story">
+
+        <!-- Category tag + score + narrator toggle + TTS -->
+        <div class="story-meta">
+          <span class="category-tag" id="story-category-tag"></span>
+          <div class="story-meta-right">
+            <span class="score-pill" id="score-pill">— / 10</span>
+            <button class="btn btn-text narrator-toggle" id="narrator-toggle">
+              Read aloud &rarr;
+            </button>
+            <!-- TTS controls — Listen button shown first; player shown once audio loads -->
+            <div class="tts-controls" id="tts-controls">
+
+              <!-- Initial: just the listen button -->
+              <button class="btn-icon" id="tts-listen-btn" title="Listen to story">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                  <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </button>
+
+              <!-- Player: restart / play-pause / stop (hidden until audio is loaded) -->
+              <div class="tts-player" id="tts-player" hidden>
+                <button class="btn-icon" id="tts-restart-btn" title="Restart">
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                    <rect x="2.5" y="3.5" width="2.5" height="13" rx="1" fill="currentColor"/>
+                    <path d="M17 4L8 10l9 6V4z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <button class="btn-icon tts-playpause-active" id="tts-playpause-btn" title="Pause">
+                  <svg id="tts-pause-icon" width="16" height="16" viewBox="0 0 20 20" fill="none">
+                    <rect x="3.5" y="3" width="4.5" height="14" rx="1.5" fill="currentColor"/>
+                    <rect x="12" y="3" width="4.5" height="14" rx="1.5" fill="currentColor"/>
+                  </svg>
+                  <svg id="tts-play-icon" width="16" height="16" viewBox="0 0 20 20" fill="none" hidden>
+                    <path d="M5 3.5L17 10 5 16.5V3.5z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <button class="btn-icon" id="tts-stop-btn" title="Stop">
+                  <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+                    <rect x="3" y="3" width="14" height="14" rx="2.5" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Story text (two versions; only one visible at a time) -->
+        <div id="story-text" class="story-text"></div>
+        <div id="narrator-text" class="story-text story-narrator" hidden></div>
+
+        <!-- Word Helper chatbot -->
+        <div class="vocab-section" id="vocab-section">
+          <button class="vocab-section-toggle" id="vocab-toggle" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26C17.81 13.47 19 11.38 19 9c0-3.87-3.13-7-7-7z"
+                    fill="currentColor"/>
+            </svg>
+            Word Helper
+            <svg class="vocab-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <div class="vocab-panel" id="vocab-panel" hidden>
+            <p class="vocab-hint" id="vocab-hint">Tap any word in the story, or type one below!</p>
+            <div class="vocab-messages" id="vocab-messages"></div>
+            <form class="vocab-input-row" id="vocab-form" autocomplete="off">
+              <input
+                type="text"
+                id="vocab-input"
+                class="vocab-input"
+                placeholder="Type a word from the story…"
+                maxlength="50"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="submit" class="vocab-send-btn" id="vocab-send-btn">Ask</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- New story button -->
+        <div class="story-footer-action">
+          <button class="btn btn-text" id="new-story-btn">&larr; Create another story</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Feedback section -->
+    <section class="feedback-section" id="feedback-section">
+      <div class="container container-narrow">
+        <h2 class="section-headline reveal">Like changes?</h2>
+        <p class="section-sub reveal">Quick edits or describe what you'd like differently.</p>
+
+        <div class="quick-actions reveal" id="quick-actions">
+          <button class="quick-pill" data-feedback="Make it shorter">Make it shorter</button>
+          <button class="quick-pill" data-feedback="Make it sillier">Sillier</button>
+          <button class="quick-pill" data-feedback="Add a dragon">Add a dragon</button>
+          <button class="quick-pill" data-feedback="Give it a calmer ending">Calmer ending</button>
+          <button class="quick-pill" data-feedback="Add more dialogue between the characters">More dialogue</button>
+        </div>
+
+        <div class="feedback-form reveal">
+          <textarea
+            id="feedback-input"
+            class="story-textarea"
+            rows="3"
+            placeholder="Or tell us what to change&#8230;"
+          ></textarea>
+          <button class="btn btn-primary" id="revise-btn">Revise</button>
+        </div>
+
+        <div id="revise-loading" class="revise-loading" hidden>
+          <div class="mini-spinner"></div>
+          <span>Revising story…</span>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+  <!-- /view-story -->
+
+  <!-- History panel (slide-in from right) -->
+  <div id="history-overlay" class="history-overlay" hidden></div>
+  <aside id="history-panel" class="history-panel" aria-label="Story history">
+    <div class="history-panel-header">
+      <h2 class="history-panel-title">Your Stories</h2>
+      <button class="history-close-btn" id="history-close-btn" aria-label="Close history">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="history-list" id="history-list">
+      <p class="history-empty">Loading…</p>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-copy">Bedtime Story Generator</span>
+    </div>
+  </footer>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>

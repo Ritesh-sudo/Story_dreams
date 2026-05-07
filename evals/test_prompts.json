@@ -1,0 +1,62 @@
+[
+  {
+    "id": "eval_01",
+    "prompt": "A brave little fox who is afraid of the dark",
+    "expected_category": "adventure",
+    "notes": "Classic adventure with relatable fear. Should resolve with courage, not magic."
+  },
+  {
+    "id": "eval_02",
+    "prompt": "Two best friends who have an argument over who gets to name their new puppy",
+    "expected_category": "friendship",
+    "notes": "Friendship / social-emotional. Tests conflict resolution and repair."
+  },
+  {
+    "id": "eval_03",
+    "prompt": "A tiny snail who wants to win a race against the other garden animals",
+    "expected_category": "animal_tale",
+    "notes": "Animal tale. Snail's slowness should be reframed as a strength."
+  },
+  {
+    "id": "eval_04",
+    "prompt": "A princess who discovers her whole kingdom is built on clouds",
+    "expected_category": "fantasy",
+    "notes": "Fantasy with whimsical world-building. Tests sensory detail and magic rules."
+  },
+  {
+    "id": "eval_05",
+    "prompt": "A little boy who cannot fall asleep and watches the moonlight move across his bedroom wall",
+    "expected_category": "bedtime_calm",
+    "notes": "Bedtime calm. Should be soothing, slow-paced, and end with character asleep."
+  },
+  {
+    "id": "eval_06",
+    "prompt": "How caterpillars turn into butterflies, told through the eyes of a young butterfly named Pip",
+    "expected_category": "educational",
+    "notes": "Educational. Tests gentle factual content woven into narrative."
+  },
+  {
+    "id": "eval_07",
+    "prompt": "A young bear cub learning to swim in a mountain lake for the first time",
+    "expected_category": "animal_tale",
+    "notes": "Animal tale. Tests sensory immersion in nature and gentle encouragement theme."
+  },
+  {
+    "id": "eval_08",
+    "prompt": "A girl who finds a tiny door in the library that leads to a land where all the book characters live",
+    "expected_category": "fantasy",
+    "notes": "Fantasy with meta-narrative. Tests originality and world specificity."
+  },
+  {
+    "id": "eval_09",
+    "prompt": "A story about why it is important to say sorry when you hurt someone's feelings",
+    "expected_category": "friendship",
+    "notes": "Friendship / emotional learning. Should teach implicitly, never preach."
+  },
+  {
+    "id": "eval_10",
+    "prompt": "A sleepy bunny counting fireflies on a warm summer night",
+    "expected_category": "bedtime_calm",
+    "notes": "Bedtime calm. Should use counting as a pacing device and end with sleep."
+  }
+]
