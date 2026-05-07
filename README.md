@@ -7,6 +7,21 @@ revision rounds before delivery.
 
 ---
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Hero](screenshots/01-hero.png) | ![How it works](screenshots/02-how-it-works.png) |
+| **Landing page** | **How it works — pipeline steps** |
+| ![Create form](screenshots/03-create-form.png) | ![History panel](screenshots/04-history-panel.png) |
+| **Story creation form** | **History panel** |
+| ![Story display](screenshots/05-story-display.png) | ![Word Helper](screenshots/06-word-helper.png) |
+| **Generated story with score** | **Word Helper chatbot** |
+| ![Feedback](screenshots/07-feedback.png) | ![TTS player](screenshots/08-tts-player.png) |
+| **Feedback & revision panel** | **Read-aloud TTS player** |
+
+---
+
 ## Quick Start
 
 ### 1. Install dependencies
