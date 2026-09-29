@@ -1,7 +1,7 @@
 import os
 from openai import OpenAI, AsyncOpenAI
 
-MODEL = "gpt-3.5-turbo"
+MODEL = os.getenv("STORY_MODEL", "gpt-3.5-turbo")  # env override, used by evals to test other models
 
 
 def get_client() -> OpenAI:

@@ -58,5 +58,125 @@
     "prompt": "A sleepy bunny counting fireflies on a warm summer night",
     "expected_category": "bedtime_calm",
     "notes": "Bedtime calm. Should use counting as a pacing device and end with sleep."
+  },
+  {
+    "id": "eval_11",
+    "prompt": "Twin siblings who follow a treasure map hidden inside their grandfather's old sea chest",
+    "expected_category": "adventure",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_12",
+    "prompt": "A young explorer who climbs a tall mountain to find where the river begins",
+    "expected_category": "adventure",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_13",
+    "prompt": "A cabin boy on a small sailing ship who must steer through a foggy channel to get everyone home",
+    "expected_category": "adventure",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_14",
+    "prompt": "Three kids who build a raft and float down the river to reach the island lighthouse",
+    "expected_category": "adventure",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_15",
+    "prompt": "How a tiny seed grows into a tall sunflower, told by the seed",
+    "expected_category": "educational",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_16",
+    "prompt": "A baker who counts from one to ten while decorating cupcakes for a party",
+    "expected_category": "educational",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_17",
+    "prompt": "A grandmother explaining to her grandson why the moon changes shape every night",
+    "expected_category": "educational",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_18",
+    "prompt": "The seven colors of the rainbow, discovered one at a time by a girl after a rainstorm",
+    "expected_category": "educational",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_19",
+    "prompt": "A shy new girl at school who is invited to share lunch by a classmate",
+    "expected_category": "friendship",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_20",
+    "prompt": "Two neighbor kids who build a treehouse together but disagree about the rules",
+    "expected_category": "friendship",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_21",
+    "prompt": "A boy who finds a way to include a new friend who speaks a different language at the playground",
+    "expected_category": "friendship",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_22",
+    "prompt": "A family of ducklings following their mother across a meadow to a new pond",
+    "expected_category": "animal_tale",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_23",
+    "prompt": "A curious otter pup discovering what lives under the river stones",
+    "expected_category": "animal_tale",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_24",
+    "prompt": "A hedgehog who prepares his burrow for the first snow of winter",
+    "expected_category": "animal_tale",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_25",
+    "prompt": "A young dragon who hiccups tiny rainbows instead of fire",
+    "expected_category": "fantasy",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_26",
+    "prompt": "A wizard's apprentice who accidentally turns all the castle teapots into singing birds",
+    "expected_category": "fantasy",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_27",
+    "prompt": "A fairy who guards the last star-flower in an enchanted forest",
+    "expected_category": "fantasy",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_28",
+    "prompt": "A little cloud drifting over a sleepy village as the lights go out one by one",
+    "expected_category": "bedtime_calm",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_29",
+    "prompt": "A girl saying goodnight to everything in her room, one thing at a time",
+    "expected_category": "bedtime_calm",
+    "notes": "Added for eval expansion; label assigned by author before any run."
+  },
+  {
+    "id": "eval_30",
+    "prompt": "Warm pajamas, a soft lullaby, and a snowy evening at grandma's house",
+    "expected_category": "bedtime_calm",
+    "notes": "Added for eval expansion; label assigned by author before any run."
   }
 ]

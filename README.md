@@ -142,8 +142,13 @@ literature memorable. The downside (occasional incoherence) is caught by the jud
 **Judge at 0.2**: Scoring must be consistent. If you run the same story through
 the judge twice, you want similar scores — otherwise the revision loop cannot
 determine whether a revision actually improved the story or just rolled the dice
-differently. Low temperature anchors the model to its calibration examples and
-produces variance of ≤ 0.5 points across identical inputs.
+differently. Low temperature is meant to anchor the model to its calibration
+examples, but it does not make scores stable: when 5 stories were each judged 5
+times on identical input (`openai/gpt-oss-120b`), the overall score's max−min
+range reached 0.90 points (pooled std dev ≈ 0.28), and 4 of the 5 stories flipped
+between pass and fail. A single judgment near the 7.5 threshold is therefore
+noisy; see [`evals/RESULTS.md`](evals/RESULTS.md). (An earlier version of this
+README claimed variance of ≤ 0.5 points; that was not measured and did not hold.)
 
 ### Why a maximum of two revision rounds?
 
@@ -207,21 +212,28 @@ Given two more hours:
 
 ## Eval Results
 
-Run `python evals/run_evals.py` to generate live results.
+Measured on 30 test prompts (5 per category), one full-pipeline run each, on
+`openai/gpt-oss-120b` via Groq's OpenAI-compatible API with `{"reasoning_effort": "low"}` (**not** the default gpt-3.5-turbo). Run date: 2026-09-28.
+Details, caveats and raw-data pointers are in [`evals/RESULTS.md`](evals/RESULTS.md).
+Reproduce with `python evals/run_evals.py`.
 
-Expected performance on `gpt-3.5-turbo`:
+| Metric | Initial draft | After judge + revision loop |
+|---|---|---|
+| Pass rate | 24/30 (80%) | 30/30 (100%) |
+| Avg overall score | 7.69 | 7.74 |
+| Avg safety score | 9.50 | 9.50 |
 
-| Metric | Expected |
+| Other metric | Value |
 |---|---|
-| Pass rate (first try) | ~50-60% |
-| Pass rate (after 2 revisions) | ~75-85% |
-| Avg overall score | 7.2 – 8.0 |
-| Avg safety score | 8.8 – 9.5 |
-| Category classification accuracy | ~90% |
+| Category classification accuracy | 29/30 (97%) |
+| Avg revision rounds | 0.20 |
+| Avg latency per story | 40.0s (upper bound; hosted free tier) |
+| Judge score spread on identical input | std dev ≈ 0.28, max−min up to 0.90 (5 stories × 5 runs) |
 
-The judge is calibrated to be strict (7.5 threshold on a model where 7 = "solid,
-publishable"). Failure cases are typically `narrative_arc_quality` (stories that
-meander without a real climax) and `originality` (clichéd imagery).
+**Caveats:** the same judge drives revisions and measures the improvement, so the
+gain is judge-measured, not human-validated. The judge's own noise (max−min up to
+0.90) is larger than the average gain (+0.05), and the earlier
+"≤ 0.5 points" consistency claim did not hold (corrected in *Why temperature 0.85 … 0.2 for the Judge*). Sample size is small (30 prompts).
 
 ---
 
